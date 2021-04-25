@@ -9,5 +9,18 @@
         android:id="@+id/news"
         android:name="com.theaverageguy.news.Ui.Fragment.News"
         android:label="@string/app_name"
-        tools:layout="@layout/news_fragment" />
+        tools:layout="@layout/news_fragment">
+        <action
+            android:id="@+id/news_to_mWebView"
+            app:destination="@id/mWebView" />
+    </fragment>
+    <fragment
+        android:id="@+id/mWebView"
+        android:name="com.theaverageguy.news.Views.mWebView"
+        android:label="mweb_view"
+        tools:layout="@layout/mweb_view">
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

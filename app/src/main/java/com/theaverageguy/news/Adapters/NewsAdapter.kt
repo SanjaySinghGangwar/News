@@ -9,7 +9,13 @@ import com.theaverageguy.news.mViewHolder.NewsViewHolder
 import com.theaverageguy.news.modelClass.mByCountry.Article
 
 
-class NewsAdapter(context: Context) : RecyclerView.Adapter<NewsViewHolder>() {
+class NewsAdapter(context: Context,private val listener: ItemListener) :
+    RecyclerView.Adapter<NewsViewHolder>() {
+
+    interface ItemListener {
+        fun onClickedCharacter(url: String)
+    }
+
 
     private val items = ArrayList<Article>()
 
@@ -22,14 +28,15 @@ class NewsAdapter(context: Context) : RecyclerView.Adapter<NewsViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding: NewFeedBinding =
             NewFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NewsViewHolder(binding)
+        return NewsViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
-        holder.bind(items.get(position))
+        holder.bind(items[position])
     }
 
     override fun getItemCount(): Int {
         return items.size
     }
+
 }

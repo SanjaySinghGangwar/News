@@ -1,15 +1,16 @@
 package com.theaverageguy.news.Ui.Fragment
 
+import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.theaverageguy.news.Adapters.NewsAdapter
+import com.theaverageguy.news.R
 import com.theaverageguy.news.Repository.ResporitaryApis
 import com.theaverageguy.news.Utils.mUtils.showToast
 import com.theaverageguy.news.databinding.NewsFragmentBinding
@@ -18,7 +19,7 @@ import com.theaverageguy.news.mRetrofit.RetroClient
 import com.theaverageguy.news.mViewModel.NewsViewModel
 import com.theaverageguy.news.modelClass.mByCountry.TopHeadlineInCountry
 
-class News : Fragment() {
+class News : Fragment(), NewsAdapter.ItemListener {
 
     companion object {
         fun newInstance() = News()
@@ -43,6 +44,7 @@ class News : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = getViewModel()
+        setHasOptionsMenu(true)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -52,7 +54,7 @@ class News : Fragment() {
     }
 
     private fun setupRecyclerView() {
-        mAdapter = NewsAdapter(context?.applicationContext!!)
+        mAdapter = NewsAdapter(context?.applicationContext!!, this)
         bind.recycler.layoutManager = LinearLayoutManager(requireContext())
         bind.recycler.adapter = mAdapter
     }
@@ -86,4 +88,33 @@ class News : Fragment() {
             }
         })[NewsViewModel::class.java]
     }
+
+    override fun onClickedCharacter(url: String) {
+        val action = NewsDirections.newsToMWebView(url)
+        view?.findNavController()?.navigate(action)
+
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.options, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.share -> {
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Hey, Just found really awesome game on play store,\n\nhttps://play.google.com/store/apps/details?id="+context?.packageName
+                )
+                sendIntent.type = "text/plain"
+                startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.send_to)))
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+
 }
