@@ -18,7 +18,7 @@ class mWebView : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = MwebViewBinding.inflate(inflater, container, false)
         return bind.root
     }
@@ -30,7 +30,6 @@ class mWebView : Fragment() {
 
     private fun initAllComponents() {
         url = args.url
-
         bind.webView.settings.javaScriptEnabled = true
         bind.webView.loadUrl(url)
     }

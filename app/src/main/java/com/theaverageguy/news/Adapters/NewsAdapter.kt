@@ -9,11 +9,12 @@ import com.theaverageguy.news.mViewHolder.NewsViewHolder
 import com.theaverageguy.news.modelClass.mByCountry.Article
 
 
-class NewsAdapter(context: Context,private val listener: ItemListener) :
+class NewsAdapter(private val context: Context,private val listener: ItemListener) :
     RecyclerView.Adapter<NewsViewHolder>() {
 
     interface ItemListener {
-        fun onClickedCharacter(url: String)
+        fun onClickedArticle(url: String)
+        fun onClickedShare(title: String, description: String, urlToImage: String, url: String)
     }
 
 
@@ -28,7 +29,7 @@ class NewsAdapter(context: Context,private val listener: ItemListener) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val binding: NewFeedBinding =
             NewFeedBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return NewsViewHolder(binding, listener)
+        return NewsViewHolder(context,binding, listener)
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {

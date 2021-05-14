@@ -9,9 +9,12 @@ object mUtils {
         Toast.makeText(context, message, Toast.LENGTH_LONG).show()
     }
 
-    fun log(message: String) {
+    fun logMe(message: String) {
         Log.i("SANJAY ", "---------------------------------------")
         Log.i("SANJAY ", "log: ------> $message")
         Log.i("SANJAY ", "---------------------------------------")
+        println("-----------------------------------------------------------")
+        println(message)
+        println("-----------------------------------------------------------")
     }
 }

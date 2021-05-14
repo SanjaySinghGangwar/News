@@ -13,14 +13,22 @@
         <action
             android:id="@+id/news_to_mWebView"
             app:destination="@id/mWebView" />
+        <action
+            android:id="@+id/home_to_setting"
+            app:destination="@id/setting2" />
     </fragment>
     <fragment
         android:id="@+id/mWebView"
         android:name="com.theaverageguy.news.Views.mWebView"
-        android:label="mweb_view"
+        android:label="Article"
         tools:layout="@layout/mweb_view">
         <argument
             android:name="url"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/setting2"
+        android:name="com.theaverageguy.news.Ui.Fragment.Setting"
+        android:label="Setting"
+        tools:layout="@layout/setting" />
 </navigation>

@@ -8,10 +8,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.theaverageguy.news.Adapters.NewsAdapter
 import com.theaverageguy.news.R
 import com.theaverageguy.news.Repository.ResporitaryApis
+import com.theaverageguy.news.Utils.mUtils.logMe
 import com.theaverageguy.news.Utils.mUtils.showToast
 import com.theaverageguy.news.databinding.NewsFragmentBinding
 import com.theaverageguy.news.mRetrofit.ApiRequests
@@ -60,7 +63,6 @@ class News : Fragment(), NewsAdapter.ItemListener {
     }
 
     private fun initAllComponents() {
-
         val apiService: ApiRequests = RetroClient.getClient()
         resporitaryApis = ResporitaryApis(apiService)
         viewModel = getViewModel()
@@ -89,10 +91,19 @@ class News : Fragment(), NewsAdapter.ItemListener {
         })[NewsViewModel::class.java]
     }
 
-    override fun onClickedCharacter(url: String) {
+    override fun onClickedArticle(url: String) {
         val action = NewsDirections.newsToMWebView(url)
         view?.findNavController()?.navigate(action)
 
+    }
+
+    override fun onClickedShare(
+        title: String,
+        description: String,
+        urlToImage: String,
+        url: String
+    ) {
+        logMe("Title :: $title Description :: $description UrlToImage :: $urlToImage URL:: $url")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -107,14 +118,30 @@ class News : Fragment(), NewsAdapter.ItemListener {
                 sendIntent.action = Intent.ACTION_SEND
                 sendIntent.putExtra(
                     Intent.EXTRA_TEXT,
-                    "Hey, Just found really awesome game on play store,\n\nhttps://play.google.com/store/apps/details?id="+context?.packageName
+                    "Hey, Just found a awesome thing on App Store,\n\n" + getString(R.string.PlayStore) + context?.packageName
                 )
                 sendIntent.type = "text/plain"
                 startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.send_to)))
+            }
+            R.id.setting -> {
+                findNavController().navigate(
+                    R.id.home_to_setting,
+                    null,
+                    navOptions { // Use the Kotlin DSL for building NavOptions
+                        anim {
+                            enter = android.R.animator.fade_in
+                            exit = android.R.animator.fade_out
+                        }
+                    }
+                )
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 }
