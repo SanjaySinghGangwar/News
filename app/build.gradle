@@ -84,4 +84,7 @@ dependencies {
 
     //Facebook Ads
     implementation 'com.facebook.android:audience-network-sdk:6.4.0'
+
+    //Swappable card
+    implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
 }

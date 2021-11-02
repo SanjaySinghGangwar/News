@@ -21,6 +21,7 @@ import com.theaverageguy.news.mRetrofit.ApiRequests
 import com.theaverageguy.news.mRetrofit.RetroClient
 import com.theaverageguy.news.mViewModel.NewsViewModel
 import com.theaverageguy.news.modelClass.mByCountry.TopHeadlineInCountry
+import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 
 class News : Fragment(), NewsAdapter.ItemListener {
 
@@ -54,6 +55,12 @@ class News : Fragment(), NewsAdapter.ItemListener {
         super.onViewCreated(view, savedInstanceState)
         initAllComponents()
         setupRecyclerView()
+        setUpSwipeCard()
+    }
+
+    private fun setUpSwipeCard() {
+        bind.card.layoutManager = CardStackLayoutManager(requireContext())
+        bind.card.adapter = mAdapter
     }
 
     private fun setupRecyclerView() {
