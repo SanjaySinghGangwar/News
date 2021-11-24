@@ -9,10 +9,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <com.yuyakaido.android.cardstackview.CardStackView
-        android:layout_width="match_parent"
         android:id="@+id/card"
-        android:layout_height="match_parent"/>
+        tools:listitem="@layout/new_feed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>

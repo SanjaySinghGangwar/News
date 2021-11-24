@@ -13,7 +13,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "com.theaverageguy.news"
+        applicationId "com.trei.news"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode 1
@@ -37,6 +37,27 @@ android {
     }
     buildFeatures {
         viewBinding true
+    }
+    signingConfigs {
+        release {
+            storeFile file('./src/main/key')
+            storePassword 'Anshika726529'
+            keyAlias 'Trei_Hgnis'
+            keyPassword 'Anshika726529'
+        }
+        debug {
+            storeFile file('./src/main/key')
+            storePassword 'Anshika726529'
+            keyAlias 'Trei_Hgnis'
+            keyPassword 'Anshika726529'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
     }
 }
 

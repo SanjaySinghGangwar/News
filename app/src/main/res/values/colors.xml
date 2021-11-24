@@ -8,6 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_status_bar">#455A64</color>
-    <color name="dark_status_bar">#455A64</color>
+    <color name="night_primary">#3C4C53</color>
+    <color name="nigh_primary_dark">#384850</color>
+    <color name="primary_light">#FF7979</color>
+    <color name="accent">#FFEA00</color>
 
 </resources>
