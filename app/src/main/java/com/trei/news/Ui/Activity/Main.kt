@@ -1,10 +1,10 @@
 package com.trei.news.Ui.Activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.trei.news.R
+import com.trei.news.Ui.Fragment.Setting
 import com.trei.news.databinding.MainBinding
 
 class Main : AppCompatActivity(), View.OnClickListener {
@@ -26,9 +26,10 @@ class Main : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(v: View?) {
-        when(v?.id){
-            R.id.setting->{
-                Log.i("SANJAY", "onClick: SETTING")
+        when (v?.id) {
+            R.id.setting -> {
+                val setting = Setting()
+                setting.showNow(supportFragmentManager, "Setting")
             }
         }
     }

@@ -130,18 +130,6 @@ class News : Fragment(), NewsAdapter.ItemListener {
                 sendIntent.type = "text/plain"
                 startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.send_to)))
             }
-            R.id.setting -> {
-                findNavController().navigate(
-                    R.id.home_to_setting,
-                    null,
-                    navOptions { // Use the Kotlin DSL for building NavOptions
-                        anim {
-                            enter = android.R.animator.fade_in
-                            exit = android.R.animator.fade_out
-                        }
-                    }
-                )
-            }
         }
         return super.onOptionsItemSelected(item)
     }

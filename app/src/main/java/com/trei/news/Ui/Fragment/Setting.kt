@@ -5,9 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.trei.news.databinding.SettingBinding
 
-class Setting : Fragment() {
+class Setting : BottomSheetDialogFragment() {
 
     private var _binding: SettingBinding? = null
     private val bind get() = _binding!!

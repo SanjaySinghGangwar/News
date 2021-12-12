@@ -37,6 +37,7 @@ android {
     }
     buildFeatures {
         viewBinding true
+        
     }
     signingConfigs {
         release {
@@ -79,7 +80,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics:17.4.1'
     implementation 'com.google.firebase:firebase-perf:19.1.1'
     implementation 'com.google.firebase:firebase-messaging:21.1.0'
-    implementation 'com.google.firebase:firebase-ads:20.1.0'
+    //implementation 'com.google.firebase:firebase-ads:20.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -104,7 +105,7 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-database:7.1.1'
 
     //Facebook Ads
-    implementation 'com.facebook.android:audience-network-sdk:6.4.0'
+    //implementation 'com.facebook.android:audience-network-sdk:6.4.0'
 
     //Swappable card
     implementation 'com.yuyakaido.android:card-stack-view:2.3.4'
