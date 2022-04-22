@@ -10,7 +10,7 @@
     <color name="light_status_bar">#455A64</color>
     <color name="night_primary">#3C4C53</color>
     <color name="nigh_primary_dark">#384850</color>
-    <color name="primary_light">#FF9100</color>
+    <color name="primary_light">#384850</color>
     <color name="accent">#515151</color>
 
 </resources>

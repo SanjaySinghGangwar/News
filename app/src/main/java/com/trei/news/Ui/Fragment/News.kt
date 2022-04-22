@@ -3,18 +3,19 @@ package com.trei.news.Ui.Fragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navOptions
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.trei.news.Adapters.NewsAdapter
 import com.trei.news.R
 import com.trei.news.Repository.ResporitaryApis
-import com.trei.news.Utils.mUtils.logMe
+import com.trei.news.Utils.AppSharePreference
+import com.trei.news.Utils.mUtils.mLog
 import com.trei.news.Utils.mUtils.showToast
 import com.trei.news.databinding.NewsFragmentBinding
 import com.trei.news.mRetrofit.ApiRequests
@@ -30,6 +31,7 @@ class News : Fragment(), NewsAdapter.ItemListener {
     }
 
     private lateinit var viewModel: NewsViewModel
+    private lateinit var sharePreference: AppSharePreference
     private lateinit var resporitaryApis: ResporitaryApis
     private lateinit var linearLayoutManager: LinearLayoutManager
     private var _binding: NewsFragmentBinding? = null
@@ -70,10 +72,11 @@ class News : Fragment(), NewsAdapter.ItemListener {
     }
 
     private fun initAllComponents() {
+        sharePreference= AppSharePreference(requireContext())
         val apiService: ApiRequests = RetroClient.getClient()
-        resporitaryApis = ResporitaryApis(apiService)
+        resporitaryApis = ResporitaryApis(apiService,sharePreference)
         viewModel = getViewModel()
-        viewModel.NewsByCountry.observe(viewLifecycleOwner, { bindUi(it) })
+        viewModel.NewsByCountry.observe(viewLifecycleOwner) { bindUi(it) }
 
         linearLayoutManager = LinearLayoutManager(context)
         bind.recycler.layoutManager = linearLayoutManager
@@ -82,6 +85,9 @@ class News : Fragment(), NewsAdapter.ItemListener {
     }
 
     private fun bindUi(data: TopHeadlineInCountry) {
+        if(bind.progressBar.visibility==VISIBLE){
+            bind.progressBar.visibility=GONE
+        }
         if (data.status == "ok") {
             mAdapter.setItems(data.articles)
         } else {
@@ -110,7 +116,7 @@ class News : Fragment(), NewsAdapter.ItemListener {
         urlToImage: String,
         url: String
     ) {
-        logMe("Title :: $title Description :: $description UrlToImage :: $urlToImage URL:: $url")
+        mLog("Title :: $title Description :: $description UrlToImage :: $urlToImage URL:: $url")
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

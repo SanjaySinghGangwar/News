@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:gravity="center"
     android:background="?attr/colorPrimaryDark"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".Ui.Activity.Splash">
 
@@ -13,15 +13,17 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
         android:src="@mipmap/ic_launcher_foreground" />
 
     <TextView
-
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="-50dp"
-        android:text="@string/app_name"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_gravity="center|bottom"
+        android:padding="10dp"
+        android:text="Made in 🇮🇳 with ❤️"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        android:textColor="@color/white"
         android:textStyle="bold" />
-</androidx.appcompat.widget.LinearLayoutCompat>
+</FrameLayout>

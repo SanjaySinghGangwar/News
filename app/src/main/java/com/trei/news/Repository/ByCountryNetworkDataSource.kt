@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.trei.news.Private.Keys.API_KEY
+import com.trei.news.Utils.AppSharePreference
 import com.trei.news.Utils.NetworkState
 import com.trei.news.mRetrofit.ApiRequests
 import com.trei.news.modelClass.mByCountry.TopHeadlineInCountry
@@ -12,6 +13,7 @@ import io.reactivex.schedulers.Schedulers
 
 class ByCountryNetworkDataSource(
     private val apiService: ApiRequests,
+    private val sharePreference: AppSharePreference,
     private val compositeDisposable: CompositeDisposable
 ) {
 
@@ -28,7 +30,7 @@ class ByCountryNetworkDataSource(
 
         try {
             compositeDisposable.add(
-                apiService.getTopHeadlines("in", API_KEY)
+                apiService.getTopHeadlines(sharePreference.countryCode, API_KEY,100)
                     .subscribeOn(Schedulers.io())
                     .subscribe(
                         {

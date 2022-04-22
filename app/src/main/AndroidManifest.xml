@@ -14,7 +14,8 @@
         android:theme="@style/Theme.News"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Ui.Activity.Splash">
+        <activity android:name=".Ui.Activity.Splash"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

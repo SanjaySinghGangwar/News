@@ -10,6 +10,7 @@ interface ApiRequests {
     @GET("top-headlines")
     fun getTopHeadlines(
         @Query("country") country: String,
-        @Query("apiKey") apiKey: String
+        @Query("apiKey") apiKey: String,
+        @Query("pageSize") size: Int
     ): Single<TopHeadlineInCountry>
 }
