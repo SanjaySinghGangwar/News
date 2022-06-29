@@ -1,7 +1,7 @@
 package com.trei.news.Private
 
 object Keys {
-    const val API_KEY = "e4851544053d44aa8f6ba2fdbbd3deb9"
+    const val API_KEY = "add Api key here"
     const val BASE_URL = "http://newsapi.org/v2/"
 }
 
